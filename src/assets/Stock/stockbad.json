@@ -1,0 +1,157 @@
+{
+    "shoe": {
+      "slip_on": {
+        "black_checker": {
+          "img": "../assets/media/shoes/shoe-slip_on-black_checker.png",
+          "sizes": {
+            "6": 2,
+            "6.5": 2,
+            "7": 2,
+            "7.5": 2,
+            "8": 2,
+            "8.5": 2,
+            "9": 2,
+            "9.5": 2
+          }
+        },
+        "black": {
+          "img": "../assets/media/shoes/shoe-slip_on-black.png",
+          "sizes": {
+            "6": 2,
+            "6.5": 2,
+            "7": 2,
+            "7.5": 2,
+            "8": 2,
+            "8.5": 2,
+            "9": 2,
+            "9.5": 2
+          }
+        },
+        "green_checker": {
+          "img": "../assets/media/shoes/shoe-slip_on-green_checker.png",
+          "sizes": {
+            "6": 2,
+            "6.5": 2,
+            "7": 2,
+            "7.5": 2,
+            "8": 2,
+            "8.5": 2,
+            "9": 2,
+            "9.5": 2
+          }
+        },
+        "light_blue": {
+          "img": "../assets/media/shoes/shoe-slip_on-light_blue.png",
+          "sizes": {
+            "6": 2,
+            "6.5": 2,
+            "7": 2,
+            "7.5": 2,
+            "8": 2,
+            "8.5": 2,
+            "9": 2,
+            "9.5": 2
+          }
+        }
+      },
+      "regular": {
+        "black": {
+          "img": "../assets/media/shoes/shoe-regular-black.png",
+          "sizes": {
+            "6": 2,
+            "6.5": 2,
+            "7": 2,
+            "7.5": 2,
+            "8": 2,
+            "8.5": 2,
+            "9": 2,
+            "9.5": 2
+          }
+        },
+        "red": {
+          "img": "../assets/media/shoes/shoe-regular-red.png",
+          "sizes": {
+            "6": 2,
+            "6.5": 2,
+            "7": 2,
+            "7.5": 2,
+            "8": 2,
+            "8.5": 2,
+            "9": 2,
+            "9.5": 2
+          }
+        }
+      },
+      "old_school": {
+        "black": {
+          "img": "../assets/media/shoes/shoe-old_school-black.png",
+          "sizes": {
+            "6": 2,
+            "6.5": 2,
+            "7": 2,
+            "7.5": 2,
+            "8": 2,
+            "8.5": 2,
+            "9": 2,
+            "9.5": 2
+          }
+        },
+        "yellow": {
+          "img": "../assets/media/shoes/shoe-old_school-yellow.png",
+          "sizes": {
+            "6": 2,
+            "6.5": 2,
+            "7": 2,
+            "7.5": 2,
+            "8": 2,
+            "8.5": 2,
+            "9": 2,
+            "9.5": 2
+          }
+        }
+      },
+      "high": {
+        "black": {
+          "img": "../assets/media/shoes/shoe-high-black.png",
+          "sizes": {
+            "6": 2,
+            "6.5": 2,
+            "7": 2,
+            "7.5": 2,
+            "8": 2,
+            "8.5": 2,
+            "9": 2,
+            "9.5": 2
+          }
+        },
+        "red": {
+          "img": "../assets/media/shoes/shoe-high-red.png",
+          "sizes": {
+            "6": 2,
+            "6.5": 2,
+            "7": 2,
+            "7.5": 2,
+            "8": 2,
+            "8.5": 2,
+            "9": 2,
+            "9.5": 2
+          }
+        }
+      },
+      "special_edition": {
+        "charlie_brown": {
+          "img": "../assets/media/shoes/shoe-special_edition-charlie_brown.png",
+          "sizes": {
+            "6": 2,
+            "6.5": 2,
+            "7": 2,
+            "7.5": 2,
+            "8": 2,
+            "8.5": 2,
+            "9": 2,
+            "9.5": 2
+          }
+        }
+      }
+    }
+  }

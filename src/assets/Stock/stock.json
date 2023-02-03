@@ -1,0 +1,200 @@
+[
+  {
+    "type": "slip_on",
+    "id": "Slip On",
+    "color": "Checker",
+    "img": "../assets/media/shoes/shoe-slip_on-checker.png",
+    "img-front": "../assets/media/shoes/shoe-slip_on-checker-front.png",
+    "sizes": [
+      "6.0",
+      "6.5",
+      "7.0",
+      "7.5",
+      "8.0",
+      "8.5",
+      "9.0",
+      "9.5"
+    ],
+    "price": 49.99
+  },
+  {
+    "type": "slip_on",
+    "id": "Slip On",
+    "color": "Black",
+    "img": "../assets/media/shoes/shoe-slip_on-black.png",
+    "img-front": "../assets/media/shoes/shoe-slip_on-black-front.png",
+    "sizes": [
+      "6.0",
+      "6.5",
+      "7.0",
+      "7.5",
+      "8.0",
+      "8.5",
+      "9.0",
+      "9.5"
+    ],
+    "price": 49.99
+  },
+  {
+    "type": "slip_on",
+    "id": "Slip On",
+    "color": "Green Checker",
+    "img": "../assets/media/shoes/shoe-slip_on-green_checker.png",
+    "img-front": "../assets/media/shoes/shoe-slip_on-green_checker-front.png",
+    "sizes": [
+      "6.0",
+      "6.5",
+      "7.0",
+      "7.5",
+      "8.0",
+      "8.5",
+      "9.0",
+      "9.5"
+    ],
+    "price": 49.99
+  },
+  {
+    "type": "slip_on",
+    "id": "Slip On",
+    "color": "Light Blue",
+    "img": "../assets/media/shoes/shoe-slip_on-light_blue.png",
+    "img-front": "../assets/media/shoes/shoe-slip_on-light_blue-front.png",
+    "sizes": [
+      "6.0",
+      "6.5",
+      "7.0",
+      "7.5",
+      "8.0",
+      "8.5",
+      "9.0",
+      "9.5"
+    ],
+    "price": 49.99
+  },
+  {
+    "type": "regular",
+    "id": "Regular",
+    "color": "Black",
+    "img": "../assets/media/shoes/shoe-slip_on-black.png",
+    "img-front": "../assets/media/shoes/shoe-slip_on-black-front.png",
+    "sizes": [
+      "6.0",
+      "6.5",
+      "7.0",
+      "7.5",
+      "8.0",
+      "8.5",
+      "9.0",
+      "9.5"
+    ],
+    "price": 49.99
+  },
+  {
+    "type": "regular",
+    "id": "Regular",
+    "color": "Red",
+    "img": "../assets/media/shoes/shoe-regular-red.png",
+    "img-front": "../assets/media/shoes/shoe-regular-red-front.png",
+    "sizes": [
+      "6.0",
+      "6.5",
+      "7.0",
+      "7.5",
+      "8.0",
+      "8.5",
+      "9.0",
+      "9.5"
+    ],
+    "price": 49.99
+  },
+  {
+    "type": "old_school",
+    "id": "Old School",
+    "color": "Black",
+    "img": "../assets/media/shoes/shoe-old_school-black.png",
+    "img-front": "../assets/media/shoes/shoe-old_school-black-front.png",
+    "sizes": [
+      "6.0",
+      "6.5",
+      "7.0",
+      "7.5",
+      "8.0",
+      "8.5",
+      "9.0",
+      "9.5"
+    ],
+    "price": 49.99
+  },
+  {
+    "type": "old_school",
+    "id": "Old School",
+    "color": "Yellow",
+    "img": "../assets/media/shoes/shoe-old_school-yellow.png",
+    "img-front": "../assets/media/shoes/shoe-old_school-yellow-front.png",
+    "sizes": [
+      "6.0",
+      "6.5",
+      "7.0",
+      "7.5",
+      "8.0",
+      "8.5",
+      "9.0",
+      "9.5"
+    ],
+    "price": 49.99
+  },
+  {
+    "type": "high",
+    "id": "High",
+    "color": "Black",
+    "img": "../assets/media/shoes/shoe-high-black.png",
+    "img-front": "../assets/media/shoes/shoe-high-black-front.png",
+    "sizes": [
+      "6.0",
+      "6.5",
+      "7.0",
+      "7.5",
+      "8.0",
+      "8.5",
+      "9.0",
+      "9.5"
+    ],
+    "price": 49.99
+  },
+  {
+    "type": "high",
+    "id": "High",
+    "color": "Red",
+    "img": "../assets/media/shoes/shoe-high-red.png",
+    "img-front": "../assets/media/shoes/shoe-high-red-front.png",
+    "sizes": [
+      "6.0",
+      "6.5",
+      "7.0",
+      "7.5",
+      "8.0",
+      "8.5",
+      "9.0",
+      "9.5"
+    ],
+    "price": 49.99
+  },
+  {
+    "type": "limited",
+    "id": "Limited",
+    "color": "Charlie Brown",
+    "img": "../assets/media/shoes/shoe-limited-charlie_brown.png",
+    "img-front": "../assets/media/shoes/shoe-limited-charlie_brown-front.png",
+    "sizes": [
+      "6.0",
+      "6.5",
+      "7.0",
+      "7.5",
+      "8.0",
+      "8.5",
+      "9.0",
+      "9.5"
+    ],
+    "price": 59.99
+  }
+]

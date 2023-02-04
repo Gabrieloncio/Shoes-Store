@@ -18,7 +18,10 @@ const ProductsContainer = (props) => {
   return (
     <div
       id={productType ? productType : 'Products'}
-      className="flex flex-col justify-center gap-5 md:px-[8%] lg:gap-9 pt-12 px-2">
+      className=" 
+      w-full min-h-[calc(100vh-2.75rem)] bg-red-500 
+      
+      flex flex-col  gap-5 md:px-[8%] lg:gap-9 pt-12 px-2">
       <h2 className="text-5xl font-bold italic text-white">
         {productType ? productType : 'Products'}
       </h2>

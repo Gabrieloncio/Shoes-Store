@@ -46,24 +46,6 @@ const Provider = (props) => {
     // setIsVisible(!detailsIsVisible)
   }
 
-  const [scrolled, setScrolled] = useState()
-  window.addEventListener('scroll', () => {
-    window.scrollY > 100 || detailsIsVisible
-      ? setScrolled(true)
-      : setScrolled(false)
-  })
-  useEffect(() => {
-    if (detailsIsVisible) {
-      setScrolled(true)
-    } else if (!detailsIsVisible || window.scrollY < 100){
-      setScrolled(false)
-    }
-  }, [detailsIsVisible])
-  useEffect(() => {
-    window.scrollY > 100 || detailsIsVisible
-      ? setScrolled(true)
-      : setScrolled(false)
-  }, [])
 
   const [section, setSection] = useState(false)
   let [idButton, setIdButton] = useState(null)
@@ -71,6 +53,10 @@ const Provider = (props) => {
     setSection(!section)
     setIdButton((idButton = e.currentTarget.id))
   }
+
+  // const [comp, setComp] = useState(null)
+
+
 
   let [productType, setProductType] = useState(currentSection)
   const changeProduct = (e) => {
@@ -201,7 +187,6 @@ const Provider = (props) => {
         handleLoading,
         section,
         handleSection,
-        scrolled,
         idButton,
         detailsIsVisible,
         visibleImage,

@@ -1,7 +1,6 @@
 import { faMountain } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useState } from 'react'
-import { useContext, useEffect } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { ProviderContext } from '../../provider/Provider'
 import ProductCart from '../Items/ProductCart'
@@ -9,9 +8,9 @@ import ProductCart from '../Items/ProductCart'
 const Checkout = () => {
   const { shoppingCart } = useContext(ProviderContext)
   const [checked, setChecked] = useState(false)
+  const [totalValue, setTotalValue] = useState(0)
   const hasItems = shoppingCart.length >= 1 ? true : false
-  const open = true
-  const [TotalValue, setTotalValue] = useState(0)
+
   useEffect(() => {
     setTotalValue(
       shoppingCart
@@ -26,7 +25,7 @@ const Checkout = () => {
     <section
       className={`bg-white flex flex-col items-center justify-center w-full md:px-32 md:py-10 h-[calc(100vh-2.75rem)] ${
         hasItems ? null : 'items-center gap-5'
-      } ${open ? 'bottom-0' : '-bottom-full'}`}>
+      } `}>
       {hasItems ? (
         <>
           <NavLink className="absolute top-5 md:top-10 flex flex-row items-end gap-2 w-auto text-4xl">
@@ -73,7 +72,7 @@ const Checkout = () => {
               <ul className="flex flex-row justify-between w-full text-xl font-bold">
                 <li>Total</li>
                 <li>
-                  {TotalValue.toLocaleString('en-US', {
+                  {totalValue.toLocaleString('en-US', {
                     style: 'currency',
                     currency: 'USD'
                   })}
@@ -103,7 +102,9 @@ const Checkout = () => {
                   className={`${checked ? 'visible' : 'hidden'}`}>
                   PROCEED TO CHECKOUT
                 </a>
-                <p className={`${checked ? 'hidden' : 'visible'}`}>PROCEED TO CHECKOUT</p>
+                <p className={`${checked ? 'hidden' : 'visible'}`}>
+                  PROCEED TO CHECKOUT
+                </p>
               </button>
               <NavLink to="/products" className="underline underline-offset-2">
                 Continue Shopping

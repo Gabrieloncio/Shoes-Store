@@ -1,9 +1,8 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { ProviderContext } from '../../provider/Provider'
 import {
   faBars,
   faHeart,
-  faMagnifyingGlass,
   faMountain,
   faShoppingCart
 } from '@fortawesome/free-solid-svg-icons'
@@ -11,28 +10,29 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MenuSection from '../NavbarSections/MenuSection'
 import ShoppingCartSection from '../NavbarSections/ShoppingCartSection'
 import FavouriteSection from '../NavbarSections/FavouriteSection'
-import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, NavLink } from 'react-router-dom'
 
 const Navbar = () => {
-  const { handleSection, section, scrolled } = useContext(ProviderContext)
-  let CheckoutURL = useLocation().pathname.includes('checkout')
+  const { handleSection, section } = useContext(ProviderContext)
+  let URL = useLocation().pathname
 
   return (
     <nav
       className={`fixed z-40 w-full flex top-0 h-10 items-center duration-500 ${
-        scrolled ? 'bg-white text-black' : 'bg-transparent text-white'
-      } ${CheckoutURL? '-top-full' : 'top-0'}`}>
-      <div 
-      onClick={handleSection}
+        !(URL.includes('home') || URL === '/')
+          ? 'bg-white text-black'
+          : 'bg-transparent text-white'
+      } ${URL.includes('checkout') ? '-top-full' : 'top-0'}`}>
+      <div
+        onClick={handleSection}
         className={`fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 ${
-          section && !CheckoutURL ? 'visible' : 'hidden'
+          section && !URL.includes('checkout') ? 'visible' : 'hidden'
         }`}></div>
       <ul className="w-full flex flex-row justify-between relative px-4 lg:px-8 h-full">
-        <li className="flex text-xl">
-          <button className="italic font-semibold">
-            <FontAwesomeIcon icon={faMountain} className="text-red-700" /> Logo
-          </button>
+        <li className="flex items-center text-xl">
+          <NavLink to='/home' className="italic font-semibold">
+            <FontAwesomeIcon icon={faMountain} /> Logo
+          </NavLink>
         </li>
         <li className="flex flex-row gap-5 text-xl">
           <button id="favourites" onClick={handleSection}>

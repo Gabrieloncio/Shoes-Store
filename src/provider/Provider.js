@@ -15,10 +15,6 @@ const Provider = (props) => {
         .toString()
         .replace(',', ' ')
     : null
-  const [isDataLoaded, setIsDataLoaded] = useState(false)
-  const DataLoading = () => {
-    setIsDataLoaded(!isDataLoaded)
-  }
 
   const [loading, setLoading] = useState(false)
   const handleLoading = () => {
@@ -43,7 +39,6 @@ const Provider = (props) => {
         setVisibleImage(1)
       }, 100)
     }
-    // setIsVisible(!detailsIsVisible)
   }
 
 
@@ -53,9 +48,6 @@ const Provider = (props) => {
     setSection(!section)
     setIdButton((idButton = e.currentTarget.id))
   }
-
-  // const [comp, setComp] = useState(null)
-
 
 
   let [productType, setProductType] = useState(currentSection)
@@ -70,13 +62,6 @@ const Provider = (props) => {
     handleLoading()
   }, [currentURL])
 
-  const [cart, setCart] = useState([])
-  const AddToFavourites = (product) => {
-    if (!cart.includes(product)) {
-      cart.push(product)
-    }
-    console.log(cart)
-  }
 
   const ScrollTo = (element) => {
     const ElementToScrollInto = document.querySelector(`#${element}`)
@@ -173,12 +158,6 @@ const Provider = (props) => {
     setProductDetails(product)
   }
 
-  const [checkoutIsOpen, setCheckoutIsOpen] = useState(false)
-  const Checkout = () => {
-    setTimeout(()=>{
-      setCheckoutIsOpen(true)
-    })
-  }
 
   return (
     <ProviderContext.Provider
@@ -194,7 +173,6 @@ const Provider = (props) => {
         handleDetailsSection,
         productType,
         changeProduct,
-        AddToFavourites,
         UpdateFavourites,
         favourites,
         UpdateShoppingCart,

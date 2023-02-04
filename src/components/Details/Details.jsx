@@ -1,13 +1,9 @@
-import RedBoxButton from '../Buttons/RedBoxButton'
-import BoxButton from '../Buttons/BoxButton'
 import SizeButton from '../Buttons/SizeButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
-// import { useState } from 'react'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { ProviderContext } from '../../provider/Provider'
 import { NavLink } from 'react-router-dom'
-import localforage from 'localforage'
 
 const Details = () => {
   const {
@@ -40,11 +36,6 @@ const Details = () => {
       )
     )
   }
-
-  // const [visibleImage, setVisibleImage] = useState(1)
-  // const letVisible = (number) => {
-  //   setVisibleImage(number)
-  // }
 
   return (
     <div

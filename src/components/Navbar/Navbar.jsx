@@ -13,24 +13,21 @@ import FavouriteSection from '../NavbarSections/FavouriteSection'
 import { useLocation, NavLink } from 'react-router-dom'
 
 const Navbar = () => {
-  const { handleSection, section } = useContext(ProviderContext)
+  const { handleSection, section, detailsIsVisible, shoppingCart } =
+    useContext(ProviderContext)
   let URL = useLocation().pathname
+  console.log(detailsIsVisible)
 
   return (
     <nav
       className={`fixed z-40 w-full flex top-0 h-10 items-center duration-500 ${
-        !(URL.includes('home') || URL === '/')
-          ? 'bg-white text-black'
-          : 'bg-transparent text-white'
+        (URL.includes('home') || URL === '/') && detailsIsVisible === false
+          ? 'bg-transparent text-white'
+          : 'bg-white text-black'
       } ${URL.includes('checkout') ? '-top-full' : 'top-0'}`}>
-      <div
-        onClick={handleSection}
-        className={`fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 ${
-          section && !URL.includes('checkout') ? 'visible' : 'hidden'
-        }`}></div>
       <ul className="w-full flex flex-row justify-between relative px-4 lg:px-8 h-full">
         <li className="flex items-center text-xl">
-          <NavLink to='/home' className="italic font-semibold">
+          <NavLink to="/home" className="italic font-semibold">
             <FontAwesomeIcon icon={faMountain} /> Logo
           </NavLink>
         </li>
@@ -39,11 +36,17 @@ const Navbar = () => {
             <FontAwesomeIcon icon={faHeart} />
           </button>
           <FavouriteSection />
-          {/* <button id="search" onClick={handleSection}>
-            <FontAwesomeIcon icon={faMagnifyingGlass} />
-          </button> */}
-          <button id="shoppingCart" onClick={handleSection}>
+          <button
+            id="shoppingCart"
+            onClick={handleSection}
+            className="relative">
             <FontAwesomeIcon icon={faShoppingCart} />
+            <div
+              className={`absolute top-4 -right-3 aspect-square w-5 bg-red-600 rounded-full text-sm font-semibold text-white ${
+                shoppingCart.length === 0 ? 'hidden' : null
+              }`}>
+              {shoppingCart.length}
+            </div>
           </button>
           <ShoppingCartSection />
           <button id="menu" onClick={handleSection}>
@@ -52,6 +55,11 @@ const Navbar = () => {
           <MenuSection />
         </li>
       </ul>
+      <div
+        onClick={handleSection}
+        className={`fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 ${
+          section && !URL.includes('checkout') ? 'visible' : 'hidden'
+        }`}></div>
     </nav>
   )
 }

@@ -16,17 +16,18 @@ const ProductsContainer = (props) => {
   })
 
   return (
-    <div
-      id={productType ? productType : 'Products'}
+    <div id='Products'
       className=" 
       w-full min-h-[calc(100vh-2.75rem)] bg-red-500 
       
-      flex flex-col  gap-5 md:px-[8%] lg:gap-9 pt-12 px-2">
-      <h2 className="text-5xl font-bold italic text-white">
+      flex flex-col gap-5 md:px-[8%] lg:gap-9 py-12 px-5">
+      <h2  className="text-5xl font-bold italic text-white">
         {productType ? productType : 'Products'}
       </h2>
-      <div className="flex flex-row flex-wrap w-full justify-center gap-5 md:justify-start ">
-        {Cards}
+      <div className='flex'>
+        <div className="flex flex-row w-full flex-wrap justify-between gap-6 md:justify-start">
+          {Cards}
+        </div>
       </div>
     </div>
   )

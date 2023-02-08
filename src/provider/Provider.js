@@ -40,7 +40,13 @@ const Provider = (props) => {
       }, 100)
     }
   }
+  useEffect(() => {
+    setTimeout(() => {
+      setIsVisible(false)
+    }, 500)
+  }, [useLocation()])
 
+  const [chooseSize, setChooseSize] = useState(null)
 
   const [section, setSection] = useState(false)
   let [idButton, setIdButton] = useState(null)
@@ -48,7 +54,6 @@ const Provider = (props) => {
     setSection(!section)
     setIdButton((idButton = e.currentTarget.id))
   }
-
 
   let [productType, setProductType] = useState(currentSection)
   const changeProduct = (e) => {
@@ -61,7 +66,6 @@ const Provider = (props) => {
     changeProduct(currentSection)
     handleLoading()
   }, [currentURL])
-
 
   const ScrollTo = (element) => {
     const ElementToScrollInto = document.querySelector(`#${element}`)
@@ -128,6 +132,8 @@ const Provider = (props) => {
 
   // Shopping Cart Section
 
+  const [isProductInCart, setIsProductInCart] = useState(null)
+
   const [shoppingCart, setShoppingCart] = useState([])
   useEffect(() => {
     localforage.getItem('myShoppingCart').then((data) => {
@@ -140,9 +146,14 @@ const Provider = (props) => {
   const selectSize = (product) => {
     setSelectedProductSize(JSON.stringify(product))
   }
+  useEffect(()=>{
+    setSelectedProductSize(null)
+  },[])
   const UpdateShoppingCart = (action, product) => {
-    if (action === 'add' && !shoppingCart.includes(selectedProductSize)) {
-      setShoppingCart([...shoppingCart, selectedProductSize])
+    if (action === 'add') {
+      shoppingCart.includes(selectedProductSize)
+        ? setIsProductInCart(true)
+        : setShoppingCart([...shoppingCart, selectedProductSize])
     } else if (action === 'remove' && shoppingCart.includes(product)) {
       setShoppingCart(
         shoppingCart.filter((valueToRemove) => valueToRemove !== product)
@@ -157,7 +168,6 @@ const Provider = (props) => {
   const OpenProductDetails = (product) => {
     setProductDetails(product)
   }
-
 
   return (
     <ProviderContext.Provider
@@ -182,7 +192,13 @@ const Provider = (props) => {
         ScrollTo,
         productDetails,
         OpenProductDetails,
+        selectedProductSize,
+        setSelectedProductSize,
         selectSize,
+        chooseSize,
+        setChooseSize,
+        isProductInCart,
+        setIsProductInCart,
         currentURL
       }}>
       {props.children}

@@ -9,7 +9,7 @@ const MenuSection = () => {
   const { handleSection, section, idButton, ScrollTo } =
     useContext(ProviderContext)
   const handleFunctions = () => {
-    ScrollTo('products')
+    ScrollTo('Products')
     handleSection()
   }
   return (

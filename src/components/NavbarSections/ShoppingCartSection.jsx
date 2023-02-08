@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import ItemCart from '../Items/ItemCart'
 import { useEffect } from 'react'
-import localforage from 'localforage'
 import { NavLink } from 'react-router-dom'
 
 const ShoppingCartSection = () => {
@@ -23,7 +22,7 @@ const ShoppingCartSection = () => {
   }, [shoppingCart])
   return (
     <div
-      className={`w-5/6 md:w-1/2 xl:w-1/4 absolute h-screen flex flex-col justify-between bg-white text-black duration-300 top-0 p-4 border-l-2 border-black ${
+      className={`w-5/6 md:w-1/2 xl:w-1/4 z-40 absolute h-screen flex flex-col justify-between bg-white text-black duration-300 top-0 p-4 border-l-2 border-black ${
         idButton === 'shoppingCart' && section ? 'right-0' : '-right-full'
       }`}>
       <div className="w-full h-5/6 flex flex-col px-3 gap-5 ">

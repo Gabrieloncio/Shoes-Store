@@ -14,22 +14,18 @@ const ProductCart = (props) => {
       <ul className="flex flex-row justify-between">
         <ul className="flex flex-row items-center gap-5 text-lg font-semibold">
           <li>
-            <NavLink>
-              <img
-                src={image}
-                alt="img"
-                className="w-14 md:w-20 aspect-square border-[1px] border-gray-400 rounded-lg"
-              />
-            </NavLink>
+            <img
+              src={image}
+              alt="img"
+              className="w-14 md:w-20 aspect-square border-[1px] border-gray-400 rounded-lg"
+            />
           </li>
           <li>
-            <NavLink>
-              {name} - {color} - Size {size}
-            </NavLink>
+            {name} - {color} - Size {size}
           </li>
         </ul>
         <ul className="flex flex-row items-center gap-5 pr-5">
-          <li className='font-bold'>
+          <li className="font-bold">
             {price.toLocaleString('en-US', {
               style: 'currency',
               currency: 'USD'

@@ -1,7 +1,7 @@
 import SizeButton from '../Buttons/SizeButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { ProviderContext } from '../../provider/Provider'
 import { NavLink } from 'react-router-dom'
 
@@ -14,42 +14,38 @@ const Details = () => {
     productDetails,
     UpdateShoppingCart,
     visibleImage,
-    letVisible
+    letVisible,
+    selectedProductSize,
+    setSelectedProductSize,
+    chooseSize,
+    setChooseSize,
+    isProductInCart,
+    setIsProductInCart
   } = useContext(ProviderContext)
   const [type, name, color, image, frontImage, sizes, price] = productDetails
   const ShoeSizes = []
-
-  const [selectedButton, setSelectedButton] = useState(null)
-  const SelectButton = (button) => {
-    setSelectedButton(selectedButton === button ? null : button)
-  }
-
   if (sizes) {
     sizes.forEach((size) =>
       ShoeSizes.push(
-        <SizeButton
-          key={size}
-          onClick={() => SelectButton(size)}
-          selectedButton={selectedButton}
-          product={[name, color, image, price, size]}
-        />
+        <SizeButton key={size} product={[name, color, image, price, size]} />
       )
     )
   }
 
+  const isSizeButtonSelected = selectedProductSize === null ? false : true
+  if(isProductInCart === true){
+    setTimeout(()=>{
+      setIsProductInCart(false)
+    },5000)
+  }
+
   return (
     <div
-      className={`fixed w-full h-screen bg-white duration-300 top-10 overflow-y-auto ${
+      className={`fixed w-full flex flex-col h-screen bg-white duration-300 top-0 py-10 md:px-36 overflow-y-auto ${
         detailsIsVisible ? 'left-0 ' : '-left-full'
       }`}>
-      <div
-        onClick={() => {
-          if (section) {
-            handleSection()
-          }
-        }}
-        className={`w-full bg-white z-30 md:px-40 py-10 flex flex-col md:flex-row gap-8 `}>
-        <div className="absolute top-0 left-3 md:left-40 text-base md:text-2xl font-semibold flex flex-row gap-1">
+      <div className="flex flex-row justify-between items-center px-3 md:px-0 pt-5">
+        <div className="text-base md:text-2xl font-semibold flex flex-row gap-1">
           <NavLink
             to="/products"
             className="text-blue-500"
@@ -75,16 +71,24 @@ const Details = () => {
           /<h2>{color}</h2>
         </div>
         <button
-          className="absolute top-3 right-4 text-4xl overflow-hidden"
+          className="text-4xl overflow-hidden"
           onClick={() => {
             handleDetailsSection('close')
           }}>
           <FontAwesomeIcon icon={faAngleLeft} />
         </button>
-        <div className="flex flex-col sm:flex-row md:flex-col gap-4 items-center justify-center md:min-w-[30rem]">
-          <ul className="flex flex-row min-w-[20rem] lg:w-[30rem] aspect-square overflow-x-hidden">
+      </div>
+      <div
+        onClick={() => {
+          if (section) {
+            handleSection()
+          }
+        }}
+        className={`w-full bg-white z-30 flex flex-col md:flex-row gap-8 `}>
+        <div className="flex flex-col sm:flex-row md:flex-col gap-4 items-center justify-center md:min-w-[30rem] px-3 md:px-0">
+          <ul className="flex flex-row min-w-[20rem] lg:w-[30rem] aspect-square overflow-x-hidden border-gray-300 border-[1px]">
             <li
-              className={`duration-200 ${
+              className={`duration-200  ${
                 visibleImage === 1 ? 'w-full' : 'w-0'
               }`}>
               <img
@@ -138,7 +142,7 @@ const Details = () => {
             </li>
           </ul>
         </div>
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col w-full px-3 md:px-0">
           <h2 className="text-lg font-bold">
             {price
               ? price.toLocaleString('en-US', {
@@ -151,25 +155,33 @@ const Details = () => {
             {name} - {color}
           </h3>
           <p className="text-lg">
-            {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
             repellat nostrum a quia culpa tempore sit saepe consequatur ipsa
             odit accusantium, exercitationem velit esse totam, dolorum eius
             vero. Eos, quidem? Lorem ipsum dolor sit amet consectetur
             adipisicing elit.
-            <span className="lg:hidden">
-              .. <button> See more</button>
-            </span>
-            <p>
-              Beatae cum quod dolores dolorum, sapiente voluptas iusto, esse
-              ipsa perspiciatis inventore sint rerum sit eaque non. Non fugiat
-              sunt in nobis? Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Dolorem eveniet excepturi unde hic. Cumque impedit sapiente
-              suscipit et quaerat temporibus harum, similique ab, aut ratione
-              voluptate rem. Nobis, possimus laborum.
-            </p>
-            <button className="lg:hidden">See less</button> */}
           </p>
-          <h3 className="text-xl pt-4 pb-2">Sizes</h3>
+          <p className="text-lg hidden md:flex">
+            Beatae cum quod dolores dolorum, sapiente voluptas iusto, esse ipsa
+            perspiciatis inventore sint rerum sit eaque non. Non fugiat sunt in
+            nobis? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Dolorem eveniet excepturi unde hic. Cumque impedit sapiente suscipit
+            et quaerat temporibus harum, similique ab, aut ratione voluptate
+            rem. Nobis, possimus laborum.
+          </p>
+          {/* <h3 className="text-xl pt-4 pb-2">Sizes</h3> */}
+          <span className="text-xl pt-4 pb-2 flex flex-row gap-2 font-semibold">
+            Sizes{' '}
+            <p
+              className={`${
+                chooseSize === true ? 'flex' : 'hidden'
+              } text-red-500`}>
+              · Please choose the size
+            </p>
+            <p className={`${isProductInCart === true ? 'flex' : 'hidden'} text-red-500`}>
+              · This product has already been added to the cart
+            </p>
+          </span>
           <ul className="text-2xl font-bold flex flex-row gap-4 flex-wrap">
             {ShoeSizes}
           </ul>
@@ -180,17 +192,48 @@ const Details = () => {
           <ul className="flex flex-row justify-between py-3">
             <button
               onClick={() => {
-                UpdateShoppingCart('add')
+                if (!isSizeButtonSelected) {
+                  setChooseSize(true)
+                }
               }}
-              className="flex justify-center items-center bg-red-500 border-2 border-red-500 py-2 px-5 lg:px-8 text-xl text-white font-semibold">
-              {' '}
-              Buy Now!
+              className={`flex justify-center items-center duration-100 py-2 px-5 lg:px-8 text-xl text-white font-semibold ${
+                isSizeButtonSelected
+                  ? 'bg-red-500'
+                  : 'bg-gray-300 cursor-default'
+              }`}>
+              <NavLink
+                onClick={() => {
+                  UpdateShoppingCart('add')
+                  setSelectedProductSize(null)
+                  setIsProductInCart(false)
+                }}
+                to="/checkout"
+                className={`${isSizeButtonSelected ? 'flex' : 'hidden'}`}>
+                Buy Now!
+              </NavLink>
+              <p className={`${isSizeButtonSelected ? 'hidden' : 'flex'}`}>
+                Buy Now!
+              </p>
             </button>
+
             <button
               onClick={() => {
-                console.log(detailsIsVisible)
+                // isSizeButtonSelected
+                //   ? UpdateShoppingCart('add') && setSelectedProductSize(null)
+                //   : setChooseSize(true)
+                if (isSizeButtonSelected) {
+                  UpdateShoppingCart('add')
+                  setSelectedProductSize(null)
+                } else {
+                  setChooseSize(true)
+                  setIsProductInCart(false)
+                }
               }}
-              className="flex justify-center items-center py-2 px-5 lg:px-8  text-xl border-2 border-red-500 text-red-500 font-semibold">
+              className={`py-2 px-5 lg:px-8 flex justify-center items-center text-xl border-2 duration-100 ${
+                isSizeButtonSelected
+                  ? 'border-red-500 text-red-500'
+                  : 'border-gray-300 text-gray-300 cursor-default'
+              } font-semibold`}>
               Add to Cart
             </button>
           </ul>

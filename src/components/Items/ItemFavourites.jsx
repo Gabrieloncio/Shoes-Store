@@ -1,9 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faX } from '@fortawesome/free-solid-svg-icons'
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState } from 'react'
 import localforage from 'localforage'
 import { ProviderContext } from '../../provider/Provider'
-// import useFavouriteIcon from '../../utils/useUpdateFavouriteIcon'
 
 const ItemFavourite = (props) => {
   const {
@@ -40,7 +39,6 @@ const ItemFavourite = (props) => {
   return (
     <li className="flex flex-row justify-between gap-2 items-start">
       <div className="flex flex-row gap-2 items-start">
-        {/* <div className="w-14 md:w-20 h-14 md:h-20 bg-black">{}</div> */}
         <img src={image} alt="img" className="w-14 md:w-20 h-14 md:h-20" />
         <ul className="flex flex-col text-lg">
           <button

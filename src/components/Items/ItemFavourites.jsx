@@ -7,12 +7,13 @@ import { ProviderContext } from '../../provider/Provider'
 const ItemFavourite = (props) => {
   const {
     UpdateFavourites,
+    favourites,
     handleSection,
     OpenProductDetails,
     detailsIsVisible,
     handleDetailsSection
   } = useContext(ProviderContext)
-  const [, name, color, image, , , price] = props.product
+  const { name, color, img, price } = props.product
   const [value, setValue] = useState(false)
 
   const handleFunctions = () => {
@@ -39,7 +40,7 @@ const ItemFavourite = (props) => {
   return (
     <li className="flex flex-row justify-between gap-2 items-start">
       <div className="flex flex-row gap-2 items-start">
-        <img src={image} alt="img" className="w-14 md:w-20 h-14 md:h-20" />
+        <img src={img} alt="img" className="w-14 md:w-20 h-14 md:h-20" />
         <ul className="flex flex-col text-lg">
           <button
             onClick={() => {
@@ -60,6 +61,7 @@ const ItemFavourite = (props) => {
         onClick={() => {
           UpdateFavourites(props.product, 'remove')
           handleClick()
+          //console.log(favourites)
         }}>
         <FontAwesomeIcon icon={faX} />
       </button>

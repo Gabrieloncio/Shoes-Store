@@ -10,9 +10,18 @@ import Footer from '../Footer/Footer'
 const ContentContainer = () => {
   const [comp, setComp] = useState(<Home />)
   const currentURl = useLocation().pathname
+  const shoesRoutes = [
+    'regular',
+    'slip_on',
+    'old_school',
+    'high',
+    'limited'
+  ].map((shoeTypeURL) => {
+    return currentURl.split('/').at(2) === shoeTypeURL ? true : false
+  })
 
   useEffect(() => {
-    if (currentURl.includes('home') || currentURl === '/') {
+    if (currentURl === '/home' || currentURl === '/') {
       setTimeout(() => {
         setComp(
           <>
@@ -22,7 +31,7 @@ const ContentContainer = () => {
           </>
         )
       }, 1000)
-    } else if (currentURl.includes('products')) {
+    } else if (currentURl === '/products' || shoesRoutes.includes(true)) {
       setTimeout(() => {
         setComp(
           <>
@@ -32,7 +41,7 @@ const ContentContainer = () => {
           </>
         )
       }, 1000)
-    } else if (currentURl.includes('checkout')) {
+    } else if (currentURl === '/checkout') {
       setTimeout(() => {
         setComp(
           <>

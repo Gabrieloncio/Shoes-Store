@@ -45,7 +45,11 @@ const Navbar = () => {
               className={`absolute top-4 -right-3 aspect-square w-5 bg-red-600 rounded-full text-sm font-semibold text-white ${
                 shoppingCart.length === 0 ? 'hidden' : null
               }`}>
-              {shoppingCart.length}
+              {shoppingCart
+                .map((product) => {
+                  return product.quantity
+                })
+                .reduce((a, b) => a + b, 0)}
             </div>
           </button>
           <ShoppingCartSection />

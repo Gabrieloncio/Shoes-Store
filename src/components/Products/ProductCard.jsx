@@ -13,15 +13,17 @@ const ProductCard = (props) => {
     handleDetailsSection
   } = useContext(ProviderContext)
 
-  const [, name, color, img, , , price] = props.product
-
+  const { name, color, img, price } = props.product
   const [value, setValue] = useState(false)
 
   useEffect(() => {
-    const parsedFavourites = favourites.map((favouriteProduct) => {
-      return favouriteProduct.replace(/"/g, '').includes(`${name},${color}`)
-    })
-    return parsedFavourites.includes(true) ? setValue(true) : setValue(false)
+    favourites
+      .map((product) => {
+        return product.name === name && product.color === color
+      })
+      .includes(true)
+      ? setValue(true)
+      : setValue(false)
   }, [favourites])
 
   return (
@@ -45,8 +47,16 @@ const ProductCard = (props) => {
           }}
           className="absolute top-4 right-4">
           {value ? (
-            <FontAwesomeIcon icon={faHeart} className="text-3xl text-red-600 animate-addToFav" />
-          ) : (<FontAwesomeIcon icon={RegularHeart} className="text-3xl text-red-600" />)}
+            <FontAwesomeIcon
+              icon={faHeart}
+              className="text-3xl text-red-600 animate-addToFav"
+            />
+          ) : (
+            <FontAwesomeIcon
+              icon={RegularHeart}
+              className="text-3xl text-red-600"
+            />
+          )}
         </button>
         <div className="flex flex-row justify-evenly">
           <button

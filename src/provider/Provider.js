@@ -84,39 +84,75 @@ const Provider = (props) => {
   }, [])
 
   const UpdateFavourites = (product, action) => {
-    localforage.getItem('myFavourites').then((currentFavourites) => {
-      if (!currentFavourites) {
-        currentFavourites = []
-      }
-      let stringProduct = JSON.stringify(product)
-      let isExists = currentFavourites.find((item) => item === stringProduct)
+    const itExists = favourites.find((item) =>
+      item.name === product.name &&
+      item.color === product.color &&
+      item.size === product.size
         ? true
         : false
-      if (action === 'add') {
-        isExists
-          ? console.log('ya existe este elemento ')
-          : setFavourites([...currentFavourites, stringProduct])
-      }
-      if (action === 'remove') {
-        isExists
-          ? setFavourites(
-              currentFavourites.filter(
-                (productToRemove) => productToRemove !== stringProduct
-              )
+    )
+    if (action === 'add' && !itExists) {
+      setFavourites([...favourites, product])
+    }
+    if (action === 'remove' && itExists) {
+      setFavourites(
+        favourites.filter(
+          (productToRemove) =>
+            !(
+              productToRemove.name === product.name &&
+              productToRemove.color === product.color &&
+              productToRemove.size === product.size
             )
-          : console.log('este elemento no se encuentra o ya ha sido removido')
-      }
-      if (action === 'toggle') {
-        !isExists
-          ? setFavourites([...currentFavourites, stringProduct])
-          : setFavourites(
-              currentFavourites.filter(
-                (productToRemove) => productToRemove !== stringProduct
-              )
+        )
+      )
+    }
+    if (action === 'toggle') {
+      !itExists
+        ? setFavourites([...favourites, product])
+        : setFavourites(
+            favourites.filter(
+              (productToRemove) =>
+                !(
+                  productToRemove.name === product.name &&
+                  productToRemove.color === product.color &&
+                  productToRemove.size === product.size
+                )
             )
-      }
-      console.log('clickeado')
-    })
+          )
+    }
+    // localforage.getItem('myFavourites').then((currentFavourites) => {
+    //   if (!currentFavourites) {
+    //     currentFavourites = []
+    //   }
+    //   let stringProduct = JSON.stringify(product)
+    //   let isExists = currentFavourites.find((item) => item === stringProduct)
+    //     ? true
+    //     : false
+    //   if (action === 'add') {
+    //     isExists
+    //       ? console.log('ya existe este elemento ')
+    //       : setFavourites([...currentFavourites, stringProduct])
+    //   }
+    //   if (action === 'remove') {
+    //     isExists
+    //       ? setFavourites(
+    //           currentFavourites.filter(
+    //             (productToRemove) => productToRemove !== stringProduct
+    //           )
+    //         )
+    //       : console.log('este elemento no se encuentra o ya ha sido removido')
+    //   }
+    //   if (action === 'toggle') {
+    //     !isExists
+    //       ? setFavourites([...currentFavourites, stringProduct])
+    //       : setFavourites(
+    //           currentFavourites.filter(
+    //             (productToRemove) => productToRemove !== stringProduct
+    //           )
+    //         )
+    //   }
+    //   console.log('clickeado')
+    // })
   }
   useEffect(() => {
     localforage.setItem('myFavourites', favourites)
@@ -144,20 +180,49 @@ const Provider = (props) => {
   }, [])
   const [selectedProductSize, setSelectedProductSize] = useState(null)
   const selectSize = (product) => {
-    setSelectedProductSize(JSON.stringify(product))
+    setSelectedProductSize(product)
   }
-  useEffect(()=>{
+  useEffect(() => {
     setSelectedProductSize(null)
-  },[])
-  const UpdateShoppingCart = (action, product) => {
+  }, [])
+  const UpdateShoppingCart = (action, product = selectedProductSize) => {
+    const itExists = shoppingCart.find((item) =>
+      item.name === product.name &&
+      item.color === product.color &&
+      item.size === product.size
+        ? true
+        : false
+    )
     if (action === 'add') {
-      shoppingCart.includes(selectedProductSize)
-        ? setIsProductInCart(true)
-        : setShoppingCart([...shoppingCart, selectedProductSize])
-    } else if (action === 'remove' && shoppingCart.includes(product)) {
-      setShoppingCart(
-        shoppingCart.filter((valueToRemove) => valueToRemove !== product)
-      )
+      itExists
+        ? setShoppingCart(
+            shoppingCart.map((item) =>
+              item.name === product.name &&
+              item.color === product.color &&
+              item.size === product.size
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+            )
+          )
+        : setShoppingCart([...shoppingCart, product])
+    }
+    if (action === 'remove' && itExists) {
+      if (itExists.quantity > 1) {
+        setShoppingCart(
+          shoppingCart.map((item) =>
+            item.name === product.name &&
+            item.color === product.color &&
+            item.size === product.size
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+          )
+        )
+      } else {
+        setShoppingCart(shoppingCart.filter((item) => item !== itExists))
+      }
+    }
+    if (action === 'removeProduct') {
+      setShoppingCart(shoppingCart.filter((item) => item !== itExists))
     }
   }
   useEffect(() => {

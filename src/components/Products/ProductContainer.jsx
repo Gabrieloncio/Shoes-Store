@@ -6,12 +6,12 @@ import { ProviderContext } from '../../provider/Provider'
 const ProductsContainer = (props) => {
   const { productType } = useContext(ProviderContext)
   let Cards = []
-  stock.forEach((a) => {
-    const product = Object.values(a)
+  stock.forEach((product) => {
+    // console.log(product)
     if (productType == null) {
-      Cards.push(<ProductCard key={product} product={product} />)
-    } else if (product.includes(productType)) {
-      Cards.push(<ProductCard key={product} product={product} />)
+      Cards.push(<ProductCard key={product.id} product={product} />)
+    } else if (product.name ===(productType)) {
+      Cards.push(<ProductCard key={product.id} product={product} />)
     }
   })
 

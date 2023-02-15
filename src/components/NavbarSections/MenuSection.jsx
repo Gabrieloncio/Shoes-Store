@@ -1,8 +1,7 @@
-import { useContext, useLocation, useEffect } from 'react'
+import { useContext } from 'react'
 import { ProviderContext } from '../../provider/Provider'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
-// import {faTrashAlt} from '@fortawesome/free-regular-svg-icons'
 import { NavLink } from 'react-router-dom'
 
 const MenuSection = () => {

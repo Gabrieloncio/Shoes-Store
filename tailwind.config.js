@@ -16,10 +16,16 @@ module.exports = {
           '10%': {transform:'scale(1.2)'},
           '30%': {transform:'scale(.9)'},
           '80%': {transform:'scale(1)'}
+        },
+        couponMessage :{
+          '0%' : {opacity: 0},
+          '100%' : {opacity: 1},
+          
         }
       },
       animation:{
-        addToFav:'addedToFav .6s ease-in-out'
+        addToFav:'addedToFav .6s ease-in-out',
+        couponAnimation: 'couponMessage .4s ease-in-out'
       }
     },
   },

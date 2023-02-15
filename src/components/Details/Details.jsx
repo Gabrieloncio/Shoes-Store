@@ -22,12 +22,12 @@ const Details = () => {
     isProductInCart,
     setIsProductInCart
   } = useContext(ProviderContext)
-  const [type, name, color, image, frontImage, sizes, price] = productDetails
+  const {type, name, color, img, imgfront, sizes, price, quantity} = productDetails
   const ShoeSizes = []
   if (sizes) {
     sizes.forEach((size) =>
       ShoeSizes.push(
-        <SizeButton key={size} product={[name, color, image, price, size]} />
+        <SizeButton key={size} product={{name, color, img, price, size, quantity}} />
       )
     )
   }
@@ -84,7 +84,7 @@ const Details = () => {
             handleSection()
           }
         }}
-        className={`w-full bg-white z-30 flex flex-col md:flex-row gap-8 `}>
+        className={`w-full bg-white z-30 flex flex-col lg:flex-row gap-8 `}>
         <div className="flex flex-col sm:flex-row md:flex-col gap-4 items-center justify-center md:min-w-[30rem] px-3 md:px-0">
           <ul className="flex flex-row min-w-[20rem] lg:w-[30rem] aspect-square overflow-x-hidden border-gray-300 border-[1px]">
             <li
@@ -93,7 +93,7 @@ const Details = () => {
               }`}>
               <img
                 alt={`${name}-${color}`}
-                src={frontImage}
+                src={imgfront}
                 className="h-full"
               />
             </li>
@@ -101,7 +101,7 @@ const Details = () => {
               className={`duration-200 ${
                 visibleImage === 2 ? 'w-full' : 'w-0'
               }`}>
-              <img alt={`${name}-${color}`} src={image} className="h-full" />
+              <img alt={`${name}-${color}`} src={img} className="h-full" />
             </li>
             <li
               className={`duration-200 ${
@@ -109,7 +109,7 @@ const Details = () => {
               }`}>
               <img
                 alt={`${name}-${color}`}
-                src={image}
+                src={img}
                 className="-scale-x-100 h-full"
               />
             </li>
@@ -120,14 +120,14 @@ const Details = () => {
               onClick={() => {
                 letVisible(1)
               }}>
-              <img alt={`${name - color}`} src={frontImage} />
+              <img alt={`${name - color}`} src={imgfront} />
             </li>
             <li
               className="w-1/3 aspect-square"
               onClick={() => {
                 letVisible(2)
               }}>
-              <img alt={`${name - color}`} src={image} />
+              <img alt={`${name - color}`} src={img} />
             </li>
             <li
               className="w-1/3 aspect-square"
@@ -136,7 +136,7 @@ const Details = () => {
               }}>
               <img
                 alt={`${name - color}`}
-                src={image}
+                src={img}
                 className="-scale-x-100"
               />
             </li>
@@ -205,7 +205,7 @@ const Details = () => {
                 onClick={() => {
                   UpdateShoppingCart('add')
                   setSelectedProductSize(null)
-                  setIsProductInCart(false)
+                  // setIsProductInCart(false)
                 }}
                 to="/checkout"
                 className={`${isSizeButtonSelected ? 'flex' : 'hidden'}`}>

@@ -19,29 +19,31 @@ const Checkout = () => {
 
   const onSubmit = (data) => {
     setCoupon('')
-    if (data.Coupon === '20%DISCOUNT') {
+    console.log(data)
+    if (data.Coupon || data === '20%DISCOUNT') {
       setCouponValue(subTotalValue * 0.2)
       setValidCoupon(true)
       setTimeout(() => {
         setValidCoupon(null)
-      }, 5000)
+      }, 10000)
     } else {
       setValidCoupon(false)
-      console.log(validCoupon)
       setTimeout(() => {
         setValidCoupon(null)
-      }, 5000)
+      }, 10000)
     }
   }
+
   useEffect(() => {
     setSubTotalValue(
       shoppingCart
         .map((data) => {
-          return JSON.parse(JSON.parse(data)).at(3)
+          return data.price * data.quantity
         })
         .reduce((a, b) => a + b, 0)
     )
   }, [shoppingCart])
+
   useEffect(() => {
     if (couponValue === 0) setTotalValue(subTotalValue)
     else {
@@ -72,7 +74,12 @@ const Checkout = () => {
               <li>
                 <ul className="flex flex-row justify-between pr-12 font-bold text-lg">
                   <li>Product</li>
-                  <li>Price</li>
+                  <li>
+                    <ul className="flex flex-row gap-10 pr-4">
+                      <li>Quantity</li>
+                      <li>Price</li>
+                    </ul>
+                  </li>
                 </ul>
               </li>
 
@@ -80,8 +87,8 @@ const Checkout = () => {
                 {shoppingCart.map((product) => {
                   return (
                     <ProductCart
-                      key={Object.values(product)}
-                      product={JSON.parse(product)}
+                      key={[product.id, product.size]}
+                      product={product}
                     />
                   )
                 })}
@@ -90,11 +97,11 @@ const Checkout = () => {
             <div className="border-2 relative border-gray-400 rounded-lg w-11/12 lg:w-1/3 h-min flex flex-col items-center p-5 gap-4">
               <div
                 className={` absolute left-1/2 -translate-x-1/2 w-full text-center -top-10 px-5 py-1 bg-black text-[#F3F3F3] rounded-md duration-500 ${
-                  validCoupon === null ? 'opacity-0' : 'opacity-100'
+                  validCoupon === null ? 'hidden' : 'animate-couponAnimation'
                 }`}>
-                {validCoupon === true
-                  ? 'Coupon applied succesfully'
-                  : 'Invalid code. Try with "20%DISCOUNT"'}
+                {validCoupon === false
+                  ? 'Invalid code. Try with "20%DISCOUNT"'
+                  : 'Coupon has been applied succesfully'}
               </div>
               <form
                 onSubmit={handleSubmit(onSubmit)}
@@ -104,8 +111,16 @@ const Checkout = () => {
                   {...register('Coupon')}
                   value={coupon}
                   onChange={(e) => setCoupon(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      setCoupon(e.target.value)
+                      onSubmit(e.target.value)
+                      e.preventDefault()
+                    }
+                  }}
                   placeholder="Discount code"
                   className="border-2 rounded-lg px-2 py-1 w-full"></input>
+                <input type="submit" hidden />
                 <input
                   type="submit"
                   className="border-[2px] px-2 py-1 rounded-lg border-black font-semibold duration-200 hover:bg-red-600 hover:text-[#F3F3F3]"
@@ -113,10 +128,9 @@ const Checkout = () => {
               </form>
               <span className="w-full border-t-2 border-gray-400"></span>
               <ul className="grid grid-cols-2 justify-between w-full text-gray-400">
-                <li
-                  className={`${
-                    couponValue === 0 ? 'hidden' : 'visible'
-                  }`}>Discount</li>
+                <li className={`${couponValue === 0 ? 'hidden' : 'visible'}`}>
+                  Discount
+                </li>
                 <li
                   className={` ${
                     couponValue === 0 ? 'hidden' : 'visible'
@@ -152,7 +166,7 @@ const Checkout = () => {
                   }}
                 />{' '}
                 I accept the{' '}
-                <button className="text-blue-600">Terms & Conditions</button>
+                <a href='../assets/documents/GMCVS.pdf' className="text-blue-600" target='_blank' >Terms & Conditions</a>
               </form>
               <button
                 onClick={() => {
@@ -181,7 +195,7 @@ const Checkout = () => {
       ) : (
         <>
           <nav className="absolute top-0 left-0 h-10 w-full flex items-center justify-center bg-black  text-2xl text-[#F3F3F3] italic font-semibold">
-            <NavLink>
+            <NavLink to="/home">
               <FontAwesomeIcon icon={faMountain} /> Logo
             </NavLink>
           </nav>

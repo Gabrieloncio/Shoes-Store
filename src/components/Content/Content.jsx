@@ -1,5 +1,4 @@
-import { Route, Routes, useRoutes } from 'react-router-dom'
-import NotFound from '../NotFound/NotFound'
+import { useRoutes } from 'react-router-dom'
 import ContentContainer from './ContentContainer'
 
 const Content = () => {
@@ -14,14 +13,11 @@ const Content = () => {
       '/products/high',
       '/products/old_school',
       '/products/limited',
-      '/checkout',
+      '/checkout'
     ]).map((path) => ({ path, Component }))
   return (
     <>
       <Roots />
-      {/* <Routes>
-        <Route path='*' element={<NotFound/>}/>
-      </Routes> */}
     </>
   )
 }

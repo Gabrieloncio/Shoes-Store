@@ -16,7 +16,6 @@ const Navbar = () => {
   const { handleSection, section, detailsIsVisible, shoppingCart } =
     useContext(ProviderContext)
   let URL = useLocation().pathname
-  console.log(detailsIsVisible)
 
   return (
     <nav

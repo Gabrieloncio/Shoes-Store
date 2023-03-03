@@ -166,7 +166,12 @@ const Checkout = () => {
                   }}
                 />{' '}
                 I accept the{' '}
-                <a href='../assets/documents/GMCVS.pdf' className="text-blue-600" target='_blank' >Terms & Conditions</a>
+                <a
+                  href="../assets/documents/GMCVS.pdf"
+                  className="text-blue-600"
+                  target="_blank">
+                  Terms & Conditions
+                </a>
               </form>
               <button
                 onClick={() => {

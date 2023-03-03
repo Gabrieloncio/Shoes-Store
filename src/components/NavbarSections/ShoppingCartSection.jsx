@@ -36,12 +36,7 @@ const ShoppingCartSection = () => {
           <button id="shoppingCart" onClick={handleSection}>
             <FontAwesomeIcon icon={faAngleRight} />
           </button>
-          <button
-            onClick={() => {
-              console.log(shoppingCart)
-            }}>
-            Cart
-          </button>
+          <h2>Cart</h2>
         </div>
         {shoppingCart.length > 0 ? (
           <>

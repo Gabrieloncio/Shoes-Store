@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom'
 export const ProviderContext = createContext()
 
 const Provider = (props) => {
+  //Get currentURL and get Section/Shoe Type
   let currentURLLocation = document.URL.split('/').at(4)
   let currentSection = currentURLLocation
     ? currentURLLocation
@@ -16,6 +17,7 @@ const Provider = (props) => {
         .replace(',', ' ')
     : null
 
+  //Set Loading animation
   const [loading, setLoading] = useState(false)
   const handleLoading = () => {
     setLoading(!loading)
@@ -23,11 +25,13 @@ const Provider = (props) => {
       setLoading(loading)
     }, 1000)
   }
-
+  //Set image on Details
   const [visibleImage, setVisibleImage] = useState(1)
   const letVisible = (number) => {
     setVisibleImage(number)
   }
+
+  //Function to open/close Details section
   const [detailsIsVisible, setIsVisible] = useState(false)
   const handleDetailsSection = (action) => {
     if (action === 'open') {
@@ -83,6 +87,7 @@ const Provider = (props) => {
     })
   }, [])
 
+  //Function to add/remove products to Favourites
   const UpdateFavourites = (product, action) => {
     const itExists = favourites.find((item) =>
       item.name === product.name &&
@@ -120,56 +125,14 @@ const Provider = (props) => {
             )
           )
     }
-    // localforage.getItem('myFavourites').then((currentFavourites) => {
-    //   if (!currentFavourites) {
-    //     currentFavourites = []
-    //   }
-    //   let stringProduct = JSON.stringify(product)
-    //   let isExists = currentFavourites.find((item) => item === stringProduct)
-    //     ? true
-    //     : false
-    //   if (action === 'add') {
-    //     isExists
-    //       ? console.log('ya existe este elemento ')
-    //       : setFavourites([...currentFavourites, stringProduct])
-    //   }
-    //   if (action === 'remove') {
-    //     isExists
-    //       ? setFavourites(
-    //           currentFavourites.filter(
-    //             (productToRemove) => productToRemove !== stringProduct
-    //           )
-    //         )
-    //       : console.log('este elemento no se encuentra o ya ha sido removido')
-    //   }
-    //   if (action === 'toggle') {
-    //     !isExists
-    //       ? setFavourites([...currentFavourites, stringProduct])
-    //       : setFavourites(
-    //           currentFavourites.filter(
-    //             (productToRemove) => productToRemove !== stringProduct
-    //           )
-    //         )
-    //   }
-    //   console.log('clickeado')
-    // })
   }
   useEffect(() => {
     localforage.setItem('myFavourites', favourites)
   }, [favourites])
 
-  const [wasRemoved, setWasRemoved] = useState(false)
-  const RemoveAnimation = () => {
-    setWasRemoved(true)
-    setTimeout(() => {
-      setWasRemoved(false)
-    }, 1000)
-  }
 
-  // Shopping Cart Section
-
+  
   const [isProductInCart, setIsProductInCart] = useState(null)
-
   const [shoppingCart, setShoppingCart] = useState([])
   useEffect(() => {
     localforage.getItem('myShoppingCart').then((data) => {
@@ -252,8 +215,6 @@ const Provider = (props) => {
         favourites,
         UpdateShoppingCart,
         shoppingCart,
-        wasRemoved,
-        RemoveAnimation,
         ScrollTo,
         productDetails,
         OpenProductDetails,

@@ -7,7 +7,6 @@ import { ProviderContext } from '../../provider/Provider'
 const ItemFavourite = (props) => {
   const {
     UpdateFavourites,
-    favourites,
     handleSection,
     OpenProductDetails,
     detailsIsVisible,
@@ -29,7 +28,6 @@ const ItemFavourite = (props) => {
       handleDetailsSection('open')
     }
     handleSection()
-    console.log(detailsIsVisible)
   }
 
   const handleClick = () => {
@@ -61,7 +59,6 @@ const ItemFavourite = (props) => {
         onClick={() => {
           UpdateFavourites(props.product, 'remove')
           handleClick()
-          //console.log(favourites)
         }}>
         <FontAwesomeIcon icon={faX} />
       </button>

@@ -27,7 +27,7 @@ const ProductCard = (props) => {
   }, [favourites])
 
   return (
-    <div className="aspect-[2/3] w-[calc(50%-1rem)] sm:w-[calc(33%-2rem)] lg:w-[calc(25%-2rem)] xl:w-[calc(17%-2rem)] z-0 bg-white relative rounded-2xl flex overflow-hidden justify-center">
+    <div className="aspect-[2/3] w-full z-0 bg-white relative rounded-2xl flex overflow-hidden justify-center">
       <div className="flex flex-col p-2 items-center w-full top-0 left-0">
         <img src={img} alt="img" className="h-1/2" />
         <div className="h-1/2 w-full px-3 text-lg">

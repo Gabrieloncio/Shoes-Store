@@ -22,7 +22,7 @@ const Details = () => {
     isProductInCart,
     setIsProductInCart
   } = useContext(ProviderContext)
-  const {type, name, color, img, imgfront, sizes, price, quantity} = productDetails
+  const {id, name, color, img, imgfront, sizes, price, quantity} = productDetails
   const ShoeSizes = []
   if (sizes) {
     sizes.forEach((size) =>
@@ -58,7 +58,7 @@ const Details = () => {
           </NavLink>{' '}
           /
           <NavLink
-            to={`/products/${type}`}
+            to={`/products/${id? id.split('-').at(0) : null}`}
             className="text-blue-500"
             onClick={() => {
               setTimeout(() => {
@@ -205,7 +205,6 @@ const Details = () => {
                 onClick={() => {
                   UpdateShoppingCart('add')
                   setSelectedProductSize(null)
-                  // setIsProductInCart(false)
                 }}
                 to="/checkout"
                 className={`${isSizeButtonSelected ? 'flex' : 'hidden'}`}>
@@ -218,9 +217,6 @@ const Details = () => {
 
             <button
               onClick={() => {
-                // isSizeButtonSelected
-                //   ? UpdateShoppingCart('add') && setSelectedProductSize(null)
-                //   : setChooseSize(true)
                 if (isSizeButtonSelected) {
                   UpdateShoppingCart('add')
                   setSelectedProductSize(null)

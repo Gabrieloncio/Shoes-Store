@@ -3,16 +3,10 @@ import { ProviderContext } from '../../provider/Provider'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import ItemFavourite from '../Items/ItemFavourites'
-import { useEffect } from 'react'
 
 const FavouriteSection = () => {
-  const { handleSection, section, idButton, wasRemoved, favourites } =
+  const { handleSection, section, idButton, favourites } =
     useContext(ProviderContext)
-  useEffect(() => {
-    console.log(favourites.length)
-  }, [favourites])
-
-  console.log(favourites.length)
 
   return (
     <div
@@ -24,12 +18,7 @@ const FavouriteSection = () => {
           <button id="favourites" onClick={handleSection}>
             <FontAwesomeIcon icon={faAngleRight} />
           </button>
-          <button
-            onClick={() => {
-              console.log(favourites)
-            }}>
-            Favourites
-          </button>
+          <h2>Favourites</h2>
         </div>
 
         {favourites.length > 0 ? (
@@ -39,15 +28,17 @@ const FavouriteSection = () => {
             })}
           </ul>
         ) : (
-          <div className='h-full flex items-center justify-center text-gray-500 italic'>Woah, it's so empty here :(</div>
+          <div className="h-5/6 flex items-center justify-center text-gray-500 italic">
+            Woah, it's so empty here :(
+          </div>
         )}
       </div>
-      <div
+      {/* <div
         className={`absolute duration-300 px-8 py-3 bg-black text-white ${
           wasRemoved ? 'bottom-3' : '-bottom-full'
         }`}>
         Product removed :(
-      </div>
+      </div> */}
     </div>
   )
 }

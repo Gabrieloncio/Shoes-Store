@@ -148,6 +148,8 @@ const Provider = (props) => {
   useEffect(() => {
     setSelectedProductSize(null)
   }, [])
+
+  //Function to change quantity/add/remove elements from the shopping cart
   const UpdateShoppingCart = (action, product = selectedProductSize) => {
     const itExists = shoppingCart.find((item) =>
       item.name === product.name &&
@@ -192,6 +194,7 @@ const Provider = (props) => {
     localforage.setItem('myShoppingCart', shoppingCart)
   }, [shoppingCart])
 
+  //Open details section according to product received
   const [productDetails, setProductDetails] = useState([])
   const OpenProductDetails = (product) => {
     setProductDetails(product)

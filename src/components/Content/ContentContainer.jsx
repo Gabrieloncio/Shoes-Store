@@ -30,7 +30,7 @@ const ContentContainer = () => {
             <Footer />
           </>
         )
-      }, 1000)
+      }, 600)
     } else if (currentURl === '/products' || shoesRoutes.includes(true)) {
       setTimeout(() => {
         setComp(
@@ -40,7 +40,7 @@ const ContentContainer = () => {
             <Footer />
           </>
         )
-      }, 1000)
+      }, 600)
     } else if (currentURl === '/checkout') {
       setTimeout(() => {
         setComp(
@@ -49,11 +49,11 @@ const ContentContainer = () => {
             <Footer />
           </>
         )
-      }, 1000)
+      }, 600)
     } else {
       setTimeout(() => {
         setComp(<NotFound />)
-      }, 1000)
+      }, 600)
     }
   }, [currentURl])
 

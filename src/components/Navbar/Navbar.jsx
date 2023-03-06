@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { ProviderContext } from '../../provider/Provider'
 import {
   faBars,
@@ -13,16 +13,20 @@ import FavouriteSection from '../NavbarSections/FavouriteSection'
 import { useLocation, NavLink } from 'react-router-dom'
 
 const Navbar = () => {
-  const { handleSection, section, detailsIsVisible, shoppingCart } =
+  const { handleSection, section, shoppingCart } =
     useContext(ProviderContext)
   let URL = useLocation().pathname
-
+  const [scroll, setScroll] = useState(0)
+  window.addEventListener('scroll', () => {
+    setScroll(window.scrollY)
+  })
   return (
     <nav
-      className={`fixed z-40 w-full flex top-0 h-10 items-center duration-500 ${
-        (URL.includes('home') || URL === '/') && detailsIsVisible === false
-          ? 'bg-transparent text-white'
-          : 'bg-white text-black'
+      onScroll={() => {
+        setScroll(window.scrollY)
+      }}
+      className={`fixed z-10 w-full flex top-0 h-11 items-center duration-300 ${
+        scroll > 50 ? 'bg-white text-black border-black border-2' : 'bg-transparent text-white border-transparent border-2'
       } ${URL.includes('checkout') ? '-top-full' : 'top-0'}`}>
       <ul className="w-full flex flex-row justify-between relative px-4 lg:px-8 h-full">
         <li className="flex items-center text-xl">

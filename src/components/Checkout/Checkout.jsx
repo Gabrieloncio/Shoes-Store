@@ -59,16 +59,15 @@ const Checkout = () => {
     <section
       className={`bg-[#F3F3F3] flex flex-col items-center justify-center w-full md:px-32 h-[calc(100vh-2.75rem)] ${
         hasItems ? null : 'items-center gap-5'
-      } `}>
+      } `}
+    >
       {hasItems ? (
         <>
-          <NavLink
-            to="/home"
-            className="flex py-5 lg:pt-0 flex-row items-end justify-center gap-2 text-4xl">
+          <div className="flex py-5 lg:pt-0 flex-row items-end justify-center gap-2 text-4xl">
             <FontAwesomeIcon icon={faMountain} />
             <h1 className="italic font-bold">Logo</h1>
             <h2 className="text-lg font-semibold">"FOOTWEAR & STYLE"</h2>
-          </NavLink>
+          </div>
           <div className="flex flex-col h-full lg:pt-20 pb-10 lg:h-4/5 lg:flex-row w-full lg:justify-between overflow-y-auto items-center lg:items-stretch">
             <ul className="w-11/12 lg:w-3/5 flex flex-col gap-2  h-2/4 lg:h-full">
               <li>
@@ -98,14 +97,16 @@ const Checkout = () => {
               <div
                 className={` absolute left-1/2 -translate-x-1/2 w-full text-center -top-10 px-5 py-1 bg-black text-[#F3F3F3] rounded-md duration-500 ${
                   validCoupon === null ? 'hidden' : 'animate-couponAnimation'
-                }`}>
+                }`}
+              >
                 {validCoupon === false
                   ? 'Invalid code. Try with "20%DISCOUNT"'
                   : 'Coupon has been applied succesfully'}
               </div>
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="relative flex flex-row gap-2">
+                className="relative flex flex-row gap-2"
+              >
                 <input
                   type="text"
                   {...register('Coupon')}
@@ -119,12 +120,14 @@ const Checkout = () => {
                     }
                   }}
                   placeholder="Discount code"
-                  className="border-2 rounded-lg px-2 py-1 w-full"></input>
+                  className="border-2 rounded-lg px-2 py-1 w-full"
+                ></input>
                 <input type="submit" hidden />
                 <input
                   type="submit"
                   className="border-[2px] px-2 py-1 rounded-lg border-black font-semibold duration-200 hover:bg-red-600 hover:text-[#F3F3F3]"
-                  value="Apply"></input>
+                  value="Apply"
+                ></input>
               </form>
               <span className="w-full border-t-2 border-gray-400"></span>
               <ul className="grid grid-cols-2 justify-between w-full text-gray-400">
@@ -134,7 +137,8 @@ const Checkout = () => {
                 <li
                   className={` ${
                     couponValue === 0 ? 'hidden' : 'visible'
-                  } text-end`}>
+                  } text-end`}
+                >
                   {couponValue.toLocaleString('en-US', {
                     style: 'currency',
                     currency: 'USD'
@@ -169,7 +173,8 @@ const Checkout = () => {
                 <a
                   href="../assets/documents/GMCVS.pdf"
                   className="text-blue-600"
-                  target="_blank">
+                  target="_blank"
+                >
                   Terms & Conditions
                 </a>
               </form>
@@ -179,12 +184,14 @@ const Checkout = () => {
                 }}
                 className={` text-[#F3F3F3] w-full py-3 font-semibold duration-200 ${
                   checked ? 'bg-red-600' : 'bg-gray-300 cursor-default'
-                }`}>
+                }`}
+              >
                 <a
                   rel="noopener noreferrer"
                   target="_blanck"
                   href="https://www.linkedin.com/in/gabriel-mendez-m/"
-                  className={`${checked ? 'visible' : 'hidden'}`}>
+                  className={`${checked ? 'visible' : 'hidden'}`}
+                >
                   PROCEED TO CHECKOUT
                 </a>
                 <p className={`${checked ? 'hidden' : 'visible'}`}>
@@ -209,7 +216,8 @@ const Checkout = () => {
           </p>
           <NavLink
             to="/products"
-            className="text-[#F3F3F3] text-lg bg-red-600 px-6 py-2">
+            className="text-[#F3F3F3] text-lg bg-red-600 px-6 py-2"
+          >
             Continue Shopping
           </NavLink>
         </>

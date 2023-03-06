@@ -21,7 +21,7 @@ const SizeButton = (props) => {
             ? setSelectedProductSize(null)
             : selectSize(props.product)
         }}
-        className={`flex border-2  h-14 w-14 items-center justify-center ${
+        className={`flex border-2  h-11 w-11 items-center justify-center ${
           selectedButton ? 'border-red-600 border-4' : 'border-black border-2'
         }`}>
         {size}

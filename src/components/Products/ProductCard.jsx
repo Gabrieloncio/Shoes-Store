@@ -1,4 +1,4 @@
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faBagShopping, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as RegularHeart } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState, useContext } from 'react'
@@ -10,7 +10,9 @@ const ProductCard = (props) => {
     UpdateFavourites,
     favourites,
     OpenProductDetails,
-    handleDetailsSection
+    handleDetailsSection,
+    OpenProductBuyNow,
+    handleBuyNowSection
   } = useContext(ProviderContext)
 
   const { name, color, img, price } = props.product
@@ -29,23 +31,42 @@ const ProductCard = (props) => {
   return (
     <div className="aspect-[2/3] w-full z-0 bg-white relative rounded-2xl flex overflow-hidden justify-center">
       <div className="flex flex-col p-2 items-center w-full top-0 left-0">
-        <img src={img} alt="img" className="h-1/2" />
-        <div className="h-1/2 w-full px-3 text-lg">
-          <h3 className="font-extrabold text-ownred">{name}</h3>
-          <h3 className="text-sm font-bold">{color}</h3>
-          <h3 className="font-extrabold text-ownred">
+        <img
+          onClick={() => {
+            OpenProductDetails(props.product)
+            handleDetailsSection('open')
+          }}
+          src={img}
+          alt="img"
+          className="h-1/2 cursor-pointer"
+        />
+        <div className="h-1/2 w-full px-3 text-lg flex flex-col justify-start">
+          <span>
+            <button
+              onClick={() => {
+                OpenProductDetails(props.product)
+                handleDetailsSection('open')
+              }}
+              className="font-extrabold text-ownred"
+            >
+              {name}
+            </button>
+          </span>
+          <span className="text-sm font-bold">{color}</span>
+          <span className="font-extrabold text-ownred">
             {price.toLocaleString('en-US', {
               style: 'currency',
               currency: 'USD'
             })}
-          </h3>
+          </span>
         </div>
         <button
           id={`${name}-${color}`}
           onClick={() => {
             UpdateFavourites(props.product, 'toggle')
           }}
-          className="absolute top-4 right-4">
+          className="absolute top-4 right-4"
+        >
           {value ? (
             <FontAwesomeIcon
               icon={faHeart}
@@ -58,14 +79,26 @@ const ProductCard = (props) => {
             />
           )}
         </button>
-        <div className="flex flex-row justify-evenly">
+        <button
+          onClick={() => {
+            OpenProductBuyNow(props.product)
+            handleBuyNowSection('open')
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faBagShopping}
+            className="text-3xl text-red-600 absolute bottom-4 right-4"
+          />
+        </button>
+        <div className="flex flex-row">
           <button
             onClick={() => {
               OpenProductDetails(props.product)
               handleDetailsSection('open')
             }}
-            className="rounded-xl bg-red-600 text-white text-xl px-4 pb-1">
-            Buy Now!
+            className="text-xl absolute bottom-4 left-5 font-bold hover:underline"
+          >
+            Details
           </button>
         </div>
       </div>

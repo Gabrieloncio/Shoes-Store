@@ -23,14 +23,19 @@ const Provider = (props) => {
     setLoading(!loading)
     setTimeout(() => {
       setLoading(loading)
-    }, 1000)
+    }, 600)
   }
-  //Set image on Details
+  //Set image on Details and BuyNow
   const [visibleImage, setVisibleImage] = useState(1)
   const letVisible = (number) => {
     setVisibleImage(number)
   }
-
+  const nextImage = () => {
+    visibleImage === 3 ? setVisibleImage(3) : setVisibleImage(visibleImage + 1)
+  }
+  const previousImage = () => {
+    visibleImage === 1 ? setVisibleImage(1) : setVisibleImage(visibleImage - 1)
+  }
   //Function to open/close Details section
   const [detailsIsVisible, setIsVisible] = useState(false)
   const handleDetailsSection = (action) => {
@@ -44,9 +49,36 @@ const Provider = (props) => {
       }, 100)
     }
   }
+  //Open details section according to product received
+  const [productDetails, setProductDetails] = useState([])
+  const OpenProductDetails = (product) => {
+    setProductDetails(product)
+  }
+
+  //Function to open/close BuyNow section
+  const [buyNowIsVisible, setBuyNowIsVisible] = useState(false)
+  const handleBuyNowSection = (action) => {
+    if (action === 'open') {
+      setBuyNowIsVisible(true)
+    }
+    if (action === 'close') {
+      setBuyNowIsVisible(false)
+      setTimeout(() => {
+        setVisibleImage(1)
+      }, 100)
+    }
+  }
+  //Open BuyNow section according to product received
+  const [productBuyNow, setProductBuyNow] = useState([])
+  const OpenProductBuyNow = (product) => {
+    setProductBuyNow(product)
+  }
+
+  //Function to close Details/Buy Now section if URL changes
   useEffect(() => {
     setTimeout(() => {
       setIsVisible(false)
+      setBuyNowIsVisible(false)
     }, 500)
   }, [useLocation()])
 
@@ -63,7 +95,7 @@ const Provider = (props) => {
   const changeProduct = (e) => {
     setTimeout(() => {
       setProductType((productType = e))
-    }, 1000)
+    }, 600)
   }
   let currentURL = useLocation()
   useEffect(() => {
@@ -130,8 +162,6 @@ const Provider = (props) => {
     localforage.setItem('myFavourites', favourites)
   }, [favourites])
 
-
-  
   const [isProductInCart, setIsProductInCart] = useState(null)
   const [shoppingCart, setShoppingCart] = useState([])
   useEffect(() => {
@@ -194,12 +224,6 @@ const Provider = (props) => {
     localforage.setItem('myShoppingCart', shoppingCart)
   }, [shoppingCart])
 
-  //Open details section according to product received
-  const [productDetails, setProductDetails] = useState([])
-  const OpenProductDetails = (product) => {
-    setProductDetails(product)
-  }
-
   return (
     <ProviderContext.Provider
       value={{
@@ -210,8 +234,14 @@ const Provider = (props) => {
         idButton,
         detailsIsVisible,
         visibleImage,
+        productBuyNow,
+        OpenProductBuyNow,
         letVisible,
+        nextImage,
+        previousImage,
         handleDetailsSection,
+        buyNowIsVisible,
+        handleBuyNowSection,
         productType,
         changeProduct,
         UpdateFavourites,

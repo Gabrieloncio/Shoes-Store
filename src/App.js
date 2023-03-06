@@ -3,6 +3,7 @@ import LoadingScreen from './components/LoadingScreen/LoadingScreen'
 import Details from './components/Details/Details'
 import { BrowserRouter } from 'react-router-dom'
 import ContentContainer from './components/Content/ContentContainer'
+import BuyNow from './components/BuyNow/BuyNow'
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
         <LoadingScreen />
         <ContentContainer />
         <Details />
+        <BuyNow/>
       </Provider>
     </BrowserRouter>
   )

@@ -7,7 +7,7 @@ const ProductSection = () => {
   return (
     <section
       id="products"
-      className="w-full min-h-[calc(100vh-2.75rem)] bg-red-500 flex flex-col overflow-x-hidden">
+      className="w-full min-h-[calc(100vh-2.75rem)] flex flex-col">
       <Routes>
         <Route path='/products' element={<ProductsContainer/>}/>
         <Route

@@ -18,11 +18,21 @@ module.exports = {
         couponMessage: {
           '0%': { opacity: 0 },
           '100%': { opacity: 1 }
+        },
+        detailsBackgroundActive: {
+          '0%' : { opacity: 0},
+          '100%': { opacity: 1}
+        },
+        loader:{
+          '0%' : {transform: 'rotate(0deg)'},
+          '100%': {transform: 'rotate(360deg)'}
         }
       },
       animation: {
         addToFav: 'addedToFav .6s ease-in-out',
-        couponAnimation: 'couponMessage .4s ease-in-out'
+        couponAnimation: 'couponMessage .4s ease-in-out',
+        detailsBackgroundActive: 'detailsBackgroundActive .2s',
+        loader: 'loader .7s linear infinite'
       },
       dropShadow: {
         outline:

@@ -2,18 +2,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { useContext } from 'react'
 import { ProviderContext } from '../../provider/Provider'
-import { NavLink } from 'react-router-dom'
 
 const ProductCart = (props) => {
-  const { UpdateShoppingCart } = useContext(ProviderContext)
-  // const [name, color, image, price, size] = JSON.parse(props.product)
+  const { UpdateShoppingCart, OpenProductDetails, handleDetailsSection } =
+    useContext(ProviderContext)
   const { name, color, img, price, size, quantity } = props.product
 
   return (
     <li className="flex flex-col gap-4">
       <span className="w-full border-t-[1px] border-gray-400"></span>
       <ul className="flex flex-row justify-between">
-        <ul className="flex flex-row items-center gap-5 text-base font-semibold">
+        <ul
+          // onClick={() => {
+          //   OpenProductDetails(props.product)
+          //   handleDetailsSection('open')
+          // }}
+          className="flex flex-row items-center gap-5 text-base font-semibold"
+        >
           <li>
             <img
               src={img}
@@ -37,7 +42,8 @@ const ProductCart = (props) => {
                   }}
                   className={`${
                     quantity > 1 ? '' : 'bg-gray-400'
-                  } w-8 rounded-l-md font-extrabold duration-75`}>
+                  } w-8 rounded-l-md font-extrabold duration-75`}
+                >
                   -
                 </button>
                 {quantity}
@@ -45,7 +51,8 @@ const ProductCart = (props) => {
                   onClick={() => {
                     UpdateShoppingCart('add', props.product)
                   }}
-                  className="w-8 rounded-l-md font-extrabold">
+                  className="w-8 rounded-l-md font-extrabold"
+                >
                   +
                 </button>
               </li>
@@ -61,7 +68,8 @@ const ProductCart = (props) => {
             <button
               onClick={() => {
                 UpdateShoppingCart('removeProduct', props.product)
-              }}>
+              }}
+            >
               <FontAwesomeIcon className="text-gray-500" icon={faTrashAlt} />
             </button>
           </li>
